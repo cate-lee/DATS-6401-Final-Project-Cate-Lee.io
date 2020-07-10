@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Clean Blog - Start Bootstrap Theme</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages':['geochart'],
+      'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    google.charts.setOnLoadCallback(drawAllSheets);
+
+    function drawAllSheets() {
+      drawSheetName('geo_chart', 'SELECT A,B', drawRegionsMap);
+      drawSheetName('geo_chart', 'SELECT A,C', drawRegionsMap_2);
+      drawSheetName('geo_chart', 'SELECT A,E', drawRegionsMap_3);
+      drawSheetName('geo_chart', 'SELECT A,F', drawRegionsMap_4);
+  }
+  function drawSheetName(sheetName, query, responseHandler) {
+            var queryString = encodeURIComponent(query);
+            var query = new google.visualization.Query(
+                'https://docs.google.com/spreadsheets/d/1y4bDmpxzD0QFU5tzeE85SeIudczpFIXJoReu60dyBRg/gviz/tq?sheet=' 
+                        + sheetName + '&headers=1&tq=' + queryString); //Query
+            query.send(responseHandler);
+        } //drawSheetName
+
+
+    function drawRegionsMap(response) {
+      var data = response.getDataTable();
+
+      var options = {
+        title: 'Violent Crime Per Capita by State',
+        region: 'US',
+        displayMode: 'regions',
+        resolution: 'provinces',
+        region: 'US', // Africa
+        colorAxis: {colors: ['#00853f', 'black', '#e31b23']},
+        defaultColor: '#f5f5f5'
+        
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
+      chart.draw(data, options);
+    };
+
+    function drawRegionsMap_2(response) {
+      var data = response.getDataTable();
+
+      var options = {
+        title: 'Property Crime Per Capita by State',
+        region: 'US',
+        displayMode: 'regions',
+        resolution: 'provinces',
+        region: 'US', // Africa
+        colorAxis: {colors: ['#00853f', 'black', '#e31b23']},
+        defaultColor: '#f5f5f5'
+        
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('geochart_colors_2'));
+      chart.draw(data, options);
+    };
+
+    function drawRegionsMap_3(response) {
+      var data = response.getDataTable();
+
+      var options = {
+        title: 'Total Property Crime by State',
+        region: 'US',
+        displayMode: 'regions',
+        resolution: 'provinces',
+        region: 'US', // Africa
+        colorAxis: {colors: ['#00853f', 'black', '#e31b23']},
+        defaultColor: '#f5f5f5'
+        
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('geochart_colors_3'));
+      chart.draw(data, options);
+    };
+
+    function drawRegionsMap_4(response) {
+      var data = response.getDataTable();
+
+      var options = {
+        title: 'Total Violent Crime By State',
+        region: 'US',
+        displayMode: 'regions',
+        resolution: 'provinces',
+        region: 'US', // Africa
+        colorAxis: {colors: ['#00853f', 'black', '#e31b23']},
+        defaultColor: '#f5f5f5'
+        
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('geochart_colors_4'));
+      chart.draw(data, options);
+    };
+  </script>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">DATS 6401 Final Project</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">Location</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="post.html">Crime Types</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="police.html">Police Presence</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Works Cited</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/court_house.jpeg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Location</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <h2 class="post-title">
+        What Can The Geography of Crime Tell Us?
+      </h2>
+      <p>Being large and diverse, the US has a range of different crime statistics by state. First let's look at the states with the highest total crimes committed.</p>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Total Violent Crime By State</p>
+        <div id="geochart_colors_3" style="width: 700px; height: 433px;"></div>
+        <p>Total Property Crime By State</p>
+        <div id="geochart_colors_4" style="width: 700px; height: 433px;"></div>
+        <p>In both of these examples, California, Texas and New York stand out with high crime totals. However these states also have very large populations. 
+          It's more useful to examine the crime per capita as in the next example.
+        </p>
+        <p>Total Violent Crime Per Capita By State</p>
+        <div id="geochart-colors" style="width: 700px; height: 433px;"></div>
+        <p>Total Property Crime Per Capita By State</p>
+        <div id="geochart_colors_2" style="width: 700px; height: 433px;"></div>
+        <p>Looking at crime rates per capita tells a very different story. Texas and California no longer stand out. However Alaska and New Mexico have very high crime per capita, for both property and 
+          violent crimes. We can also see that Louisiana, Tennessee and South Carolina have unusually high crime per capita.
+        </p>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

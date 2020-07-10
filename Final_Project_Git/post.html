@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Clean Blog - Start Bootstrap Theme</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  
+  <script>
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawAllSheets);
+
+      function drawAllSheets() {
+      drawSheetName('types_bar', 'SELECT A,B', BarChartHandler);
+      drawSheetName('grouped_bar', 'SELECT A,B,C,D,E,F,G', CrimeTypeResponseHandler);
+      drawSheetName('age_offender_victim', 'SELECT A,B,C', AgeDistHandler);
+      drawSheetName('pie_offender', 'SELECT A,B', drawPieChart);
+      drawSheetName('pie_offender', 'SELECT A,C', drawPieChart_2);
+      
+  }
+  function drawSheetName(sheetName, query, responseHandler) {
+            var queryString = encodeURIComponent(query);
+            var query = new google.visualization.Query(
+                'https://docs.google.com/spreadsheets/d/1y4bDmpxzD0QFU5tzeE85SeIudczpFIXJoReu60dyBRg/gviz/tq?sheet=' 
+                        + sheetName + '&headers=1&tq=' + queryString); //Query
+            query.send(responseHandler);
+        } //drawSheetName
+
+  function BarChartHandler(response) {
+        var data = response.getDataTable();
+
+        var options = {
+          title: 'Crimes By Type',
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('bar_chart'));
+
+        chart.draw(data, options);
+      }
+      function CrimeTypeResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 5, desc: true});
+
+            var options = {
+                title: 'Crimes By Type Over Time',
+                vAxis: {title: 'Crimes'},
+                hAxis: {title: 'Year'}
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById("crime_type_div"));
+
+            chart.draw(data, options);
+        }
+      function AgeDistHandler(response) {
+            var data = response.getDataTable();
+            
+            var options = {
+                title: 'Distribution of Age for Offenders and Victims',
+                vAxis: {title: 'Quantity'},
+                hAxis: {title: 'Age Range'},
+                bar: {groupWidth: "75%"}
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById("crime_div"));
+
+            chart.draw(data, options);
+        }
+      function drawPieChart(response) {
+        var data = response.getDataTable();
+
+        var options = {
+          title: 'Sex of Offenders',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById("donutchart_offender"));
+        chart.draw(data, options);
+      }
+
+      function drawPieChart_2(response) {
+        var data = response.getDataTable();
+
+        var options = {
+          title: 'Sex of Victims',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById("donutchart_victim"));
+        chart.draw(data, options);
+      }
+
+
+
+      
+
+</script>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">DATS 6401 Final Project</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Introduction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">Location</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="post.html">Crime Types</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="police.html">Police Presence</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Works Cited</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('img/crime_scene.jpeg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Crime Types</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto"></div>
+        <h2 class="post-title">
+          Why Are Types of Crime Significant?
+        </h2>
+        <p>Separating crime types is an important part of the defund the police argument, because many non-violent property crimes could be redirected to other social services, reducing community contact with the police.
+          Let's start by looking at some of the main types of crime reported by the FBI Crime Data Tables.
+        </p>
+        <div id="bar_chart" style="width: 1200px; height: 500px"></div>
+        <p>We can see easily that property crimes account for a much larger portion of criminal activity than crimes like homocide and assault. Note that the definition of rape changed in 2013 resulting in two reported categories.</p>
+        <div id="crime_type_div" style="width: 900px; height: 500px;"></div>
+        <p>Crimes of almost all types have trended downwards in recent years. Again, it's clear that property crimes are a majority of cirminal activity.</p>
+        <div id="crime_div" style="width: 900px; height: 500px;"></div>
+        <p>Let's more closely examine violent crimes, as this is of the most concern when considering defunding police forces. Perpetrators of violent crimes are most often between 20 and 29. The distribution of offenders is slilghtly younger than of victims.</p>
+        <div id="donutchart_offender" style="width: 900px; height: 500px;"></div>
+        <div id="donutchart_victim" style="width: 900px; height: 500px;"></div>
+        <p>Violent crime is more often committed by men than by women in this data set. However the victims of violent crime are a nearly equal split of men and women.</p>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+     
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
